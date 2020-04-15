@@ -41,12 +41,21 @@ function menuCreator(arr){
     let unordered = document.createElement("ul");
     menuDiv.appendChild(unordered);
 
-      arr.forEach(item => {
-
+      arr.forEach((item, i) => {
+        let listItem = document.createElement("li");
+        listItem.textContent = item;
+        listItem.classList.add(i);
+        unordered.appendChild(listItem);
       });
   
+  const menuButton = document.querySelector(".menu-button"); //why would you want this inside the menu creator? isn't it better to keep this function focused?
+  menuButton.addEventListener("click", event => {
+    menuDiv.classList.toggle("menu--open");
+  });
+
   return menuDiv;
 }
 
-menuDiv = menuCreator(menuItems);
-console.log(menuDiv);
+const menu = menuCreator(menuItems);
+const header = document.querySelector(".header");
+header.appendChild(menu);

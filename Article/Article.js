@@ -171,7 +171,6 @@ function articleCreator(article){
     expandButton.addEventListener(`click`, event => {
       articleDiv.classList.toggle(`article-open`);
     });
-    
     articleDiv.appendChild(expandButton);
 
     return articleDiv;
