@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Breaking: Keenan is a bad web developer!',
+    date: 'Apr 14th, 2020',
+    firstParagraph: `Honestly, have you seen how terrible this guy is?`,
+
+    secondParagraph: `Like, for real though.`,
+
+    thirdParagraph: `He's the worst.`
   }
 ];
 
@@ -107,8 +116,54 @@ const data = [
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleCreator(article){
+  let articleDiv = document.createElement(`div`);
+  articleDiv.classList.add(`article`);
+
+    let title = document.createElement(`h2`);
+    title.textContent = article.title;
+    articleDiv.appendChild(title);
+
+    let date = document.createElement(`p`);
+    date.textContent = article.date;
+    date.classList.add(`date`);
+    articleDiv.appendChild(date);
+
+    let paragraph1 = document.createElement(`p`);
+    paragraph1.textContent = article.firstParagraph;
+    articleDiv.appendChild(paragraph1);
+
+    let paragraph2 = document.createElement(`p`);
+    paragraph2.textContent = article.secondParagraph;
+    articleDiv.appendChild(paragraph2);
+
+    let paragraph3 = document.createElement(`p`);
+    paragraph3.textContent = article.thirdParagraph;
+    articleDiv.appendChild(paragraph3);
+
+    let expandButton = document.createElement(`span`);
+    expandButton.textContent = "Expand";
+    expandButton.classList.add(`expandButton`);
+    expandButton.addEventListener(`click`, event => {
+      articleDiv.classList.toggle(`article-open`);
+    });
+    articleDiv.appendChild(expandButton);
+
+    return articleDiv;
+}
+
+articleComponents = data.map(articleObj => {
+  return articleCreator(articleObj);
+});
+
+articles = document.querySelector(".articles");
+
+articleComponents.forEach(comp => {
+  articles.appendChild(comp);
+});
