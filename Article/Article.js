@@ -198,6 +198,13 @@ function articleCreator(article){
     paragraph3.textContent = article.thirdParagraph;
     articleDiv.appendChild(paragraph3);
 
+    let closeButton = document.createElement(`button`);
+    closeButton.textContent = "Article Read";
+    closeButton.addEventListener("click", event => {
+      event.target.parentElement.style.display = "none";
+    });
+    articleDiv.appendChild(closeButton);
+
     let expandButton = document.createElement(`span`);
     expandButton.textContent = `\u234c`; //how would I use an HTML character here?
     expandButton.style.fontSize = "1.6rem";
