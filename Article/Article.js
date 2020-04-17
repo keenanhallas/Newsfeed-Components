@@ -218,9 +218,8 @@ function articleCreator(article){
 }
 
 articleComponents = data.map(articleObj => {
-  return articleCreator(articleObj); //is it useful to assign this to a variable & return the variable instead?
+  return articleCreator(articleObj);
 });
-
 articles = document.querySelector(".articles");
 
 articleComponents.forEach(comp => {
